@@ -1,9 +1,13 @@
 (ns main.template
   (:require [reagent.dom]))
 
+(defn app []
+  [:h2 "Helllo from clojurescript!"])
+
 ;; start is called by init and after code reloading finishes
 (defn ^:dev/after-load start []
-  (js/console.log "start"))
+  (js/console.log "start")
+  (reagent.dom/render [app] (js/document.getElementById "app")))
 
 (defn init []
   ;; init is called ONCE when the page loads
@@ -12,10 +16,6 @@
   (js/console.log "init")
   (start))
 
-(defn app []
-  [:h2 "Hello from clojurescript!"])
-
 ;; this is called before any code is reloaded
 (defn ^:dev/before-load stop []
-  (js/console.log "stop")
-  (reagent.dom/render [app] (js/document.getElementById "app")))
+  (js/console.log "stop"))
